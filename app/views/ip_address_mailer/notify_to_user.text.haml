@@ -1,0 +1,29 @@
+= "以下の通りIPを#{@action_message}しました。"
+\
+= "登録アカウント uid   : #{@ldap_user.uid}"
+= "使用者名             : #{@ldap_user.cn}"
+= "使用者メールアドレス : #{@ldap_user.mail}"
+= "ホスト名             : #{@ip.fqdn}"
+= "IPv4アドレス         : #{@ip.ipv4}"
+= "IPv6アドレス         : #{@ip.ipv6}"
+= "所属                 : #{@ip.affiliation}"
+= "MACアドレス          : #{@ip.mac_address}"
+\
+\
+- if @show_static_info
+  固定アドレスとして利用する場合は以下の情報をご利用ください。
+  \
+  IPv4
+  サブネット             : 255.255.240.0
+  デフォルトゲートウェイ : 10.0.15.254
+  プライマリ DNS         : 10.100.10.20
+  セカンダリ DNS         : 10.100.10.10
+  \
+  IPv6
+  プレフィックス         : /64
+  デフォルトゲートウェイ : 2001:2f8:1c:a504::1
+  プライマリ DNS         : 2001:2f8:1c:a500::20
+  セカンダリ DNS         : 2001:2f8:1c:a500::10
+\
+= "#{@action_message}日時 : #{Time.now.to_s}"
+= "#{@action_message}IP   : #{@remote_ip}"

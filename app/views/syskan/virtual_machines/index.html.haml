@@ -1,0 +1,18 @@
+%h2 VirtualMachines
+
+= insert_alert
+
+%table.table
+  %tbody
+    %tr
+      %td VM name
+      %td DB登録日時
+      %td 年度末アーカイブ対象か?
+      %td
+    - @virtual_machines.each do |vm|
+      %tr
+        %td= vm.name
+        %td= vm.created_at
+        %td= vm.cleanup_marked ? 'YES' : 'NO'
+        %td= button_to 'フラグ切り替え', syskan_virtual_machine_toggle_cleanup_marked_path(vm)
+

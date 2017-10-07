@@ -1,0 +1,13 @@
+%h2 Sign in
+
+= insert_alert
+
+= form_tag new_session_path, method: :post do
+  .field
+    = label_tag      :uid
+    = text_field_tag :uid, nil, autofocus: true
+  .field
+    = label_tag          :password
+    = password_field_tag :password, nil, autocomplete: 'off'
+  .actions
+    = submit_tag 'Sign in'

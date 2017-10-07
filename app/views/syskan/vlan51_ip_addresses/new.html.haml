@@ -1,0 +1,15 @@
+%h2 New VLAN 51 IP
+
+= insert_model_alert @ip
+
+= form_tag(syskan_vlan51_ip_addresses_path action: :create, method: :post) do
+  .field
+    = label_tag      :uid
+    = text_field_tag 'syskan_vlan51_ip_address[domain]'
+
+  .field
+    = label_tag  :mac_address
+    = text_field_tag 'syskan_vlan51_ip_address[mac_address]'
+
+  = submit_tag
+

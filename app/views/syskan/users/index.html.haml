@@ -1,0 +1,17 @@
+%h2 Users
+
+= insert_alert
+
+%table.table
+  %tbody
+    %tr
+      %td uid
+      %td vm_limit
+      %td
+      %td
+    - @users.each do |user|
+      %tr
+        %td= user.uid
+        %td= user.vm_limit
+        %td= button_to '+', syskan_user_increment_vm_limit_path(user)
+        %td= button_to '-', syskan_user_decrement_vm_limit_path(user)

@@ -1,0 +1,23 @@
+= form_for [:admin, @record] do |f|
+
+  - if @record.errors.present?
+    .alert.alert-warning
+      %ul
+        - @record.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label      :name
+    = f.text_field :name
+  .field
+    = f.label      :rdtype
+    = f.text_field :rdtype
+  .field
+    = f.label      :rdata
+    = f.text_field :rdata
+  .field
+    = f.label      :ttl
+    = f.text_field :ttl
+
+  .actions
+    = f.submit

@@ -1,0 +1,10 @@
+%li.dropdown#syskan_dropdown
+  %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+    syskan
+    %span.caret
+  %ul.dropdown-menu
+    %li= link_to 'VM Permissions', syskan_users_path
+    %li= link_to 'VM List',        syskan_virtual_machines_path
+    %li= link_to 'VLAN51 Control', syskan_vlan51_ip_addresses_path
+
+

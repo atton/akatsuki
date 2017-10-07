@@ -1,0 +1,29 @@
+%h2 New IP Address
+
+= insert_model_alert(@ip)
+
+= form_for @ip do |f|
+  .field
+    = f.label :domain
+    = f.text_field :domain
+
+  .field
+    = f.label :affiliation
+    = f.select :affiliation, options_for_select(IEConfig::Domain::Affiliations.select(&:show).map(&:to_option))
+
+  .field
+    = f.label :mac_address
+    = f.text_field :mac_address
+
+  = f.submit
+
+%pre{"white-space" => "pre"}
+  IP アドレスを申請するには以下の情報を入力する必要があります
+  ドメイン: 申請したIPアドレスの名前
+  所属:     申請するアドレスの所属
+  Mac Address: 申請するIPアドレスを利用するデバイスの Mac Address
+  ドメインが ryukyu で、所属がst(学部生)である場合、 ryukyu.st.ie.u-ryukyu.ac.jp のドメインが学科内ネットワークで利用できるようになります。
+  申請したIPアドレスは学科内ネットワークにて提供されているDHCPによりIPが自動で配布されます。
+  %br
+  ドメインには英数字とハイフンのみが使えます。
+  不正なドメイン名である場合はIPが作成できません。

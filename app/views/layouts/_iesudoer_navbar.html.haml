@@ -1,0 +1,10 @@
+%li.dropdown#iesudoer_dropdown
+  %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+    管理者メニュー
+    %span.caret
+  %ul.dropdown-menu
+    %li
+      = link_to 'Create New LDAP User', new_ldap_user_path
+    %li
+      = link_to 'Manage LocalRecords',  admin_local_records_path
+

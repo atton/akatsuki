@@ -1,0 +1,31 @@
+%h2= @virtual_machine.ip_address.fqdn
+
+%table.table
+  %tbody
+    %tr
+      %td IPv4
+      %td= @virtual_machine.ip_address.ipv4
+    %tr
+      %td IPv6
+      %td= @virtual_machine.ip_address.ipv6
+    %tr
+      %td Mac Address
+      %td= @virtual_machine.ip_address.mac_address
+    %tr
+      %td CPU Core
+      %td= @vm_information[:cpus]
+    %tr
+      %td Memory Size
+      %td= @vm_information[:memory_size].kilobyte.to_s(:human_size)
+    %tr
+      %td Storage Size
+      %td= "#{@vm_information[:volume_size]}GB"
+    %tr
+      %td Status
+      %td= @vm_information[:is_active] ? 'Active' : 'Inactive'
+
+
+- if @vm_information[:is_active]
+  = button_to 'PowerOff', power_off_ip_address_virtual_machine_path, method: :post
+- else
+  = button_to 'PowerOn',  power_on_ip_address_virtual_machine_path,  method: :post

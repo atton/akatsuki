@@ -1,0 +1,26 @@
+%h2= @ip.fqdn
+
+= insert_model_alert @ip
+
+= form_for(@ip) do |f|
+  .field
+    = f.label      :domain
+    = f.text_field :domain
+
+  .field
+    = f.label      :mac_address
+    = f.text_field :mac_address
+
+  .field
+    = f.label      :affiliation
+    = f.text_field :affiliation, readonly: true
+
+  .field
+    = f.label      'IP Address'
+    = f.text_field :assigned_address, readonly: true
+
+  = f.submit(class: ['btn', 'btn-default'])
+
+.pull-right
+  = button_to('Delete IP', ip_address_path(@ip), method: :delete, data: {confirm: 'Are you sure?'}, class: ['btn', 'btn-default', 'btn-danger'])
+

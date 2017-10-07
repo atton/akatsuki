@@ -1,0 +1,46 @@
+= insert_alert
+
+%h2 IP Addresses
+
+%table.table
+  %tbody
+    %tr
+      %td domain
+      %td IPv4 address
+      %td IPv6 address
+      %td mac address
+    - @ip_addresses.each do |ip|
+      %tr
+        %td= link_to(ip.fqdn, ip_address_path(ip))
+        %td= ip.ipv4
+        %td= ip.ipv6
+        %td= ip.mac_address
+    %tr
+      %td
+      %td
+      %td
+      %td= link_to('New IP', new_ip_address_path)
+
+- if current_user.vm_controllable? || current_user.vm_creatable?
+  %h2 Virtual Machines
+  %table.table
+    %tbody
+      %tr
+        %td domain
+        %td IPv4 address
+        %td IPv6 address
+        %td mac address
+        %td Details
+      - @virtual_machines.each do |ip|
+        %tr
+          %td= ip.fqdn
+          %td= ip.ipv4
+          %td= ip.ipv6
+          %td= ip.mac_address
+          %td= link_to 'Detail', ip_address_virtual_machine_path(ip)
+      %tr
+        %td
+        %td
+        %td
+        %td
+        %td= current_user.vm_creatable? ? link_to('New VM', new_virtual_machine_path) : ''

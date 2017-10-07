@@ -1,0 +1,24 @@
+%h2= @ip.fqdn
+
+= insert_model_alert @ip
+
+%table.table
+  %tbody
+    %tr
+      %td domain
+      %td= @ip.domain
+    %tr
+      %td affiliation
+      %td= @ip.affiliation
+    %tr
+      %td mac_address
+      %td= @ip.mac_address
+    %tr
+      %td IPv4
+      %td= @ip.ipv4
+    %tr
+      %td IPv6
+      %td= @ip.ipv6
+
+- if @ip.modifiable_by_user?
+  = link_to('Edit IP', edit_ip_address_path(@ip))

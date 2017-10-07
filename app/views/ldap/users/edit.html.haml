@@ -1,0 +1,44 @@
+%h2
+  LDAP情報変更
+
+= insert_model_alert(@user)
+
+= form_tag ldap_user_path, action: 'update', method: 'patch' do
+  .panel.panel-default
+    .panel-heading= "uid: #{@user.uid}"
+
+    .panel-body
+      .field
+        = label_tag 'shell'
+        = select_tag 'attributes[loginShell]', options_for_select(IEConfig::LDAP::Shells, selected: @user.loginShell)
+
+
+  - if @user.password_modifiable_by_akatsuki?
+
+    %a.btn.btn-info{'role' => 'button', 'data-toggle' => 'collapse', 'aria-expanded' => false, 'href' => '#modify_password', 'aria-controls' => 'modify_password'} パスワードも変更する
+
+    #modify_password.collapse.panel.panel-default
+      .panel-heading= "パスワード変更"
+
+      = text_field_tag nil, nil, style: 'display:none'
+      - # For Force prevent autofill in Firefox/Safari.
+      - # 'autocomplete:off' attributes don't prevents password autofill in Firefox
+
+      .panel-body
+        .field
+          = label_tag '現在のパスワード'
+          = password_field_tag 'attributes[current_password]'
+
+        .field
+          = label_tag '新しいパスワード'
+          = password_field_tag "attributes[userPassword]"
+
+        .field
+          = label_tag '新しいパスワード(確認)'
+          = password_field_tag "attributes[userPassword_confirmation]"
+
+  .actions
+    = submit_tag('変更する', class: 'btn btn-primary')
+
+%pre{style: 'margin-top: 30px;'}
+  2016/07/22 時点で Edy の端末故障により新規登録が行なえなくなりました。注意してください。

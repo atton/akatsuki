@@ -1,0 +1,19 @@
+%h2 New Virtual Machine
+
+= insert_model_alert @virtual_machine
+
+= form_tag(virtual_machine_path, action: :create, method: :post) do
+  .field
+    = label_tag      :domain
+    = text_field_tag 'virtual_machine[domain]'
+
+  .field
+    = label_tag  :affiliation
+    = select_tag 'virtual_machine[affiliation]',   options_for_select(IEConfig::Domain::Affiliations.map(&:to_option))
+
+  .field
+    = label_tag  :template_name
+    = select_tag 'virtual_machine[template_name]', options_for_select(IEConfig::KVM.templates_for_options)
+
+  = submit_tag
+

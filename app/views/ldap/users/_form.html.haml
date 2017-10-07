@@ -1,0 +1,34 @@
+= form_tag ldap_user_path, method: :create do
+
+  - if @user.errors.present?
+    .alert.alert-warning
+      %ul
+        - @user.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = label_tag 'uid'
+    = text_field_tag 'user[uid]'
+
+  .field
+    = label_tag 'uidNumber'
+    = number_field_tag 'user[uidNumber]'
+
+  .field
+    = label_tag 'group'
+    = select_tag 'user[group]', options_for_select(IEConfig::LDAP::Group.candidate)
+
+  .field
+    = label_tag 'gecos(Name in English)'
+    = text_field_tag 'user[gecos]'
+
+  .field
+    = label_tag 'cn(Name in Japanese)'
+    = text_field_tag 'user[cn]'
+
+  .field
+    = label_tag 'password'
+    = password_field_tag 'user[password]'
+
+  .actions
+    = submit_tag

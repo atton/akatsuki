@@ -1,0 +1,7 @@
+%h2 Edit LocalRecord
+
+= render partial: 'form'
+
+= button_to('Delete Local record', admin_local_record_path(@record), method: :delete, data: {confirm: 'Are you sure?'}, class: ['btn', 'btn-default', 'btn-danger'])
+
+= link_to 'Back', admin_local_records_path

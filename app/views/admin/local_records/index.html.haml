@@ -1,0 +1,23 @@
+%h2 LocalRecords
+
+= insert_alert
+
+%table.table
+  %tbody
+    %tr
+      %td name
+      %td rdtype
+      %td rdata
+      %td ttl
+    - @records.each do |record|
+      %tr
+        %td= link_to(record.name, edit_admin_local_record_path(record))
+        %td= record.rdtype
+        %td= record.rdata
+        %td= record.ttl
+    %tr
+      %td
+      %td
+      %td
+      %td= link_to('New Record', new_admin_local_record_path)
+

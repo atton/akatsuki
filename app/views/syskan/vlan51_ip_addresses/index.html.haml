@@ -1,0 +1,24 @@
+%h2 VLAN51 IP Addresses
+
+%table.table
+  %tbody
+    %tr
+      %td UID
+      %td IPv4 address
+      %td IPv6 address
+      %td mac address
+      %td action
+    - @ip_addresses.each do |ip|
+      %tr
+        %td= ip.domain
+        %td= ip.ipv4
+        %td= ip.ipv6
+        %td= ip.mac_address
+        %td= link_to('Delete IP', syskan_vlan51_ip_address_path(ip), method: :delete, data: {confirm: 'Are you sure?'})
+    %tr
+      %td
+      %td
+      %td
+      %td
+      %td= link_to('New VLAN51 IP', new_syskan_vlan51_ip_address_path)
+

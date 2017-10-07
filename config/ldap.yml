@@ -1,0 +1,28 @@
+## ActiveLDAP Environment
+
+default: &default
+  timeout: 0
+  base: ou=ie,o=u-ryukyu,c=jp
+  bind_dn: cn=hoge,ou=ie,o=u-ryukyu,c=jp
+  retry_limit: 3
+  allow_anonymous: false
+
+development:
+  host: <%= ENV['LDAP_HOST'] %>
+  port: 389
+  password: <%= ENV['LDAP_MANAGER_PASSWORD'] %>
+  <<: *default
+
+test:
+  host: <%= ENV['LDAP_HOST'] %>
+  port: 10389
+  password: <%= ENV['LDAP_MANAGER_PASSWORD'] %>
+  <<: *default
+
+production:
+  host: LDAP_PRODUCTION_HOST
+  port: 389
+  bind_dn: cn=hoge,ou=ie,o=u-ryukyu,c=jp
+  password: PRODUCTION_LDAP_PASSWORD
+  method: tls
+  <<: *default

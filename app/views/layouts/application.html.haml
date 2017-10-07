@@ -1,0 +1,27 @@
+!!! 5
+%html
+  %head
+    %title Akatsuki
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+
+  %body
+    %nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          %a.navbar-brand{href: root_path} Akatsuki
+
+        .collapse.navbar-collapse
+          %ul.nav.navbar-nav.navbar-right
+            - if syskan_signed_in?
+              = render partial: 'layouts/syskan_navbar'
+            - if iesudoer_signed_in?
+              = render partial: 'layouts/iesudoer_navbar'
+            - if user_signed_in?
+              %li= link_to 'LDAP情報変更', edit_ldap_user_path
+              %li= link_to 'ログアウト', sign_out_path
+            - else
+              %li= link_to 'ログイン', sign_in_path
+
+  = yield
